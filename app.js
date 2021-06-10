@@ -7,10 +7,10 @@ const dbConnection = require('./db');
 const middleware = require('./middleware');
 const controllers = require('./controllers');
 
-app.use(middleware.headers);
 app.use('/user', controllers.userController);
-app.use('/garden', controllers.plantController);
-app.use('/garden/mine', controllers.gardenController);
+app.use(middleware.headers);
+//app.use('/garden', controllers.plantController);
+//app.use('/garden/mine', controllers.gardenController);
 dbConnection.authenticate()
     .then(() => dbConnection.sync())
     .then (() =>{
