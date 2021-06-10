@@ -8,7 +8,7 @@ router.get('/practice', (req, res)=>{
     res.send('This is a test route.')
 });
 
-// Post new plant (requires sign in)
+// Post new plant (requires sign in) <CREATE>
 router.post('/create', validateSession, async(req, res) =>{
     const { plantName, typeOfPlant, lightingNeeds, waterNeeds, fertilizerNeeds, notes } = req.body;
     const { id } = req.user;
@@ -29,6 +29,76 @@ router.post('/create', validateSession, async(req, res) =>{
     }
 });
 
-// Update plant (requires sign in)
-// Edit plant (requires sign in)
-// Delete plant (requires sign in)
+// get all plant entries <READ>
+
+router.get('/all', async(req, res) =>{
+    try {
+        const allPlants = await PlantModel.findAll();
+        res.status(200).json(allPlants);
+    } catch (err) {
+        res.status(500).json({
+            msg: `Oh no! Failed to find plants. Error: ${err}`
+        })
+    }
+});
+
+// get entry by plant name (plant name in address bar) <READ>
+router.get('/:plantName', async(req, res)=>{
+    const { plantName } = req.params;
+    try {
+        const thisPlant = await PlantModel.findOne({
+            where: { plantName: plantName}
+        });
+        res.status(200).json(thisPlant)
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
+// Update plant by name (requires sign in) <UPDATE>
+router.put('/:plantName', validateSession, async(req, res)=>{
+    try {
+        const { plantName } = req.params;
+
+        const updatedPlant = await PlantModel.update({
+            plantName,
+            typeOfPlant,
+            lightingNeeds,
+            waterNeeds,
+            fertilizerNeeds,
+            notes}, {where: {plantName: plantName}
+        });
+        res.status(200).json({
+            msg: 'plant updated!',
+            updatedPlant
+        });
+    } catch (err) {
+        res.status(500).json({error: err})
+    }
+});
+
+// Delete plant by name (requires sign in) <DELETE>
+router.delete('/:plantName', validateSession, async (req, res)=>{
+    const { plantName } = req.params;
+    const { id } = req.user.id;
+
+    try {
+        const deletedPlant = await PlantModel.destroy({
+            where: { plantName: plantName, owner_id: id }
+        })
+        res.status(200).json({
+            msg: 'Log deleted.',
+            deletedPlant: deletedPlant
+        })
+    } catch (err) {
+        if(owner_id != id){
+            res.status(404).json({
+                msg: 'This is not your plant, you cannot delete it.'
+            })
+        } else {
+            res.status(500).json({
+                msg: `Oh no! Server error: ${err}`
+            })
+        }
+    }
+})
