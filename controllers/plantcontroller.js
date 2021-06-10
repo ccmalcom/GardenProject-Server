@@ -27,4 +27,8 @@ router.post('/create', validateSession, async(req, res) =>{
     } catch (err) {
         res.status(500).json({msg: `On no! Server error: ${err}`})
     }
-})
+});
+
+// Update plant (requires sign in)
+// Edit plant (requires sign in)
+// Delete plant (requires sign in)
