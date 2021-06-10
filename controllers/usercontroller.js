@@ -12,8 +12,8 @@ router.post('/register', async(req, res)=>{
             firstName,
             lastName,
             emailAddress,
-            zipCode,
             password: bcrypt.hashSync(password, 13),
+            zipCode
         });
 
         let token = jwt.sign({ id: User.id }, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24})
@@ -30,7 +30,7 @@ router.post('/register', async(req, res)=>{
             });
         } else {
             res.status(500).json({
-                msg: 'Oh no! Server failed to register user.'
+                msg: `Oh no! Server failed to register user. err=${err}`
             })
         }
     }
@@ -43,7 +43,7 @@ router.post('/login', async (req, res) =>{
     try {
         let loginUser = await UserModel.findOne({
             where: {
-                username: username,
+                emailAddress: emailAddress,
             },
         });
 
