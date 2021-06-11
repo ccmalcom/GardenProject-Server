@@ -21,7 +21,7 @@ const User = db.define('user', {
     zipCode: {
         type: DataTypes.INTEGER,
         allowNull: false
-    }
+    },
     
 });
 module.exports = User;

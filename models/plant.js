@@ -1,9 +1,10 @@
 const {DataTypes} = require('sequelize');//1
 const db = require('../db');//2
 
-const Plants = db.define('garden', {//3
-    owner_id: {
+const Plants = db.define('plant', {//3
+    creator: {
         type: DataTypes.INTEGER,
+        allowNull: false
     },
     plantName: {
         type: DataTypes.STRING,

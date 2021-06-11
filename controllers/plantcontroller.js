@@ -1,6 +1,7 @@
 const Express = require('express');
 const router = Express.Router();
 const validateSession = require('../middleware/validate-session');
+const { UniqueConstraintError } = require('sequelize/lib/errors');
 const { PlantModel } = require('../models');
 
 // practice route
@@ -13,20 +14,25 @@ router.post('/create', validateSession, async(req, res) =>{
     const { plantName, typeOfPlant, lightingNeeds, waterNeeds, fertilizerNeeds, notes } = req.body;
     const { id } = req.user;
     const plantEntry = {
-        owner_id: id,
+        creator: id,
         plantName,
         typeOfPlant,
         lightingNeeds,
         waterNeeds,
         fertilizerNeeds,
         notes,
-        
     }
     try {
         const newPlant = await PlantModel.create(plantEntry);
         res.status(200).json(newPlant);
     } catch (err) {
+        if (err instanceof UniqueConstraintError){
+            res.status(409).json({
+                msg: 'A plant by this name has already been entered.'
+            });
+        } else {
         res.status(500).json({msg: `On no! Server error: ${err}`})
+        }
     }
 });
 
@@ -61,7 +67,6 @@ router.put('/:plantName', validateSession, async(req, res)=>{
     try {
         const { plantName, typeOfPlant, lightingNeeds, waterNeeds, fertilizerNeeds, notes } = req.body;
         
-
         const updatedPlant = await PlantModel.update({
             plantName,
             typeOfPlant,
@@ -80,21 +85,22 @@ router.put('/:plantName', validateSession, async(req, res)=>{
 });
 
 // Delete plant by name (requires sign in) <DELETE>
+// ! this path is not complete. Need to make it so that if you are not the user that created the plant, err message says 'this is not your plant, you cannot delete it.' Currently, it doesn't let you delete it, but it says 200 deletedPlant:0. Also need to do the same thing for if the plantName does not match a name in db
 router.delete('/:plantName', validateSession, async (req, res)=>{
     const { plantName } = req.params;
     const { id } = req.user;
 
     try {
         const deletedPlant = await PlantModel.destroy({
-            where: { plantName: plantName, owner_id: id }
+            where: { plantName: plantName, creator: id }
         })
         res.status(200).json({
             msg: 'Log deleted.',
             deletedPlant: deletedPlant
         })
     } catch (err) {
-        if(owner_id != id){
-            res.status(404).json({
+        if(creator.value != id.value){
+            res.status(403).json({
                 msg: 'This is not your plant, you cannot delete it.'
             })
         } else {
