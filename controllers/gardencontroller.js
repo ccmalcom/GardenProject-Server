@@ -6,7 +6,7 @@ const { GardenModel } = require('../models');
 // add plant to your garden <CREATE>
 // ? how do we get data from plant table into garden
 router.post('/create', validateSession, async(req, res) =>{
-    const { plantName, typeOfPlant, lightingNeeds, waterNeeds, fertilizerNeeds, notes } = req.plant; //! maybe this?
+    const { plantName, typeOfPlant, lightingNeeds, waterNeeds, fertilizerNeeds, notes } = req.body; //! maybe this?
     const { id } = req.user.id;
     const gardenEntry = {
         plantName,
@@ -24,7 +24,6 @@ router.post('/create', validateSession, async(req, res) =>{
         res.status(500).json({msg: `On no! Server error: ${err}`})
     }
 });
-
 
 // see all plants from your garden <READ>
 // see individual plant from your garden <READ>
