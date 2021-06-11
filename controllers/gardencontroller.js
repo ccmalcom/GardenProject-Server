@@ -4,6 +4,7 @@ const validateSession = require('../middleware/validate-session');
 const { GardenModel } = require('../models');
 
 // add plant to your garden <CREATE>
+<<<<<<< HEAD
 // !This will need to copy data from plant table using client side functionality
 router.post('/create', validateSession, async(req, res) =>{
     const { plantName, typeOfPlant, lightingNeeds, waterNeeds, fertilizerNeeds, notes } = req.body;
@@ -26,6 +27,29 @@ router.post('/create', validateSession, async(req, res) =>{
 });
 
 module.exports = router;
+=======
+// ? how do we get data from plant table into garden
+// router.post('/create', validateSession, async(req, res) =>{
+//     const { plantName, typeOfPlant, lightingNeeds, waterNeeds, fertilizerNeeds, notes } = req.body; //! maybe this?
+//     const { id } = req.user.id;
+//     const gardenEntry = {
+//         plantName,
+//         typeOfPlant,
+//         lightingNeeds,
+//         waterNeeds,
+//         fertilizerNeeds,
+//         notes,
+//         Garden_id: id
+//     }
+//     try {
+//         const newGarden = await GardenModel.create(gardenEntry);
+//         res.status(200).json(newGarden);
+//     } catch (err) {
+//         res.status(500).json({msg: `On no! Server error: ${err}`})
+//     }
+// });
+
+>>>>>>> 4b79d44c20b0f0a6d2f957b87a14504f871a6e8f
 
 // see all plants from your garden <READ>
 router.get('/all', validateSession, async(req, res) =>{
