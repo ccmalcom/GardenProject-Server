@@ -12,4 +12,4 @@ GardenModel.hasMany(PlantModel, {
 }); //garden model needs foreign key
 PlantModel.belongsTo(GardenModel)
 
-module.exports = {UserModel, PlantModel, GardenModel}
+module.exports = {UserModel, PlantModel }//deleted GardenModel

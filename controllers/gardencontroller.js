@@ -1,7 +1,7 @@
-const Express = require('express');
-const router = Express.Router();
-const validateSession = require('../middleware/validate-session');
-const { GardenModel } = require('../models');
+// const Express = require('express');
+// const router = Express.Router();
+// const validateSession = require('../middleware/validate-session');
+// const { GardenModel } = require('../models');
 
 // add plant to your garden <CREATE>
 // ? how do we get data from plant table into garden
