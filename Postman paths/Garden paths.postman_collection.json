@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "392512c2-ee55-41d3-af18-1c5f622af031",
+		"name": "Garden paths",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add plant to garden",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjIzNDQ1Mzc4LCJleHAiOjE2MjM1MzE3Nzh9.gaRDXP2fSukIdh6A4h6u3VrdVUYUAJRTEwFmcCBY1qo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n        \"plantName\": \"orange\",\r\n        \"typeOfPlant\": \"fruit\",\r\n        \"lightingNeeds\": \"moderate\",\r\n        \"waterNeeds\": \"once daily\",\r\n        \"fertilizerNeeds\": \"none\",\r\n        \"notes\": \"test\"\r\n        \r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3010/garden/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3010",
+					"path": [
+						"garden",
+						"create"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all plants in user's garden",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjIzNDQ1NTg2LCJleHAiOjE2MjM1MzE5ODZ9.5iip-abGxuLD0apHj52DqyTWMDAvuSnEAJHFXl6PJ3Y",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3010/garden/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3010",
+					"path": [
+						"garden",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get individual plant in user's garden",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjIzNDQ1NTg2LCJleHAiOjE2MjM1MzE5ODZ9.5iip-abGxuLD0apHj52DqyTWMDAvuSnEAJHFXl6PJ3Y",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3010/garden/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3010",
+					"path": [
+						"garden",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete plant from garden by name",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjIzNDQ1NTg2LCJleHAiOjE2MjM1MzE5ODZ9.5iip-abGxuLD0apHj52DqyTWMDAvuSnEAJHFXl6PJ3Y",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3010/garden/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3010",
+					"path": [
+						"garden",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update notes for plant in garden",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjIzNDQ1NTg2LCJleHAiOjE2MjM1MzE5ODZ9.5iip-abGxuLD0apHj52DqyTWMDAvuSnEAJHFXl6PJ3Y",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"notes\": \"updated note\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3010/garden/orange/notes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3010",
+					"path": [
+						"garden",
+						"orange",
+						"notes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

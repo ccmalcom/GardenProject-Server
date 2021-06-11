@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "556c0391-e803-4e5a-93da-d1548ce3bc57",
+		"name": "User paths",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\":\r\n    {\r\n    \"firstName\": \"new\",\r\n    \"lastName\": \"user\",\r\n    \"emailAddress\": \"user@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"zipCode\": 46221\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3010/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3010",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\":{\r\n        \"emailAddress\": \"user@gmail.com\",\r\n        \"password\": \"password\"    \r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3010/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3010",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,14 +1,13 @@
 const {DataTypes} = require('sequelize');//1
 const db = require('../db');//2
 
-const Garden = db.define('mine', {//3
-    Garden_id: {
+const Garden = db.define('garden', {//3
+    garden_id: {
         type: DataTypes.INTEGER,
     },
     plantName: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
     },
     typeOfPlant: {
         type: DataTypes.STRING,
@@ -30,7 +29,6 @@ const Garden = db.define('mine', {//3
         type: DataTypes.STRING,
         allowNull: true,
     }
-
 })
 
 module.exports = Garden;

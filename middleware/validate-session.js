@@ -20,7 +20,7 @@ const validateSession = async(req, res, next) =>{
             res.status(401).send({ msg: `Invalid Token. Are you logged in?`})
         }
     } else {
-        res.status(403).send({ msg: `Forbidden`})
+        res.status(403).send({ msg: `Forbidden. You must register or login to access this site function.`})
     }
 }
 module.exports = validateSession;
