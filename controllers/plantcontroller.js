@@ -13,13 +13,14 @@ router.post('/create', validateSession, async(req, res) =>{
     const { plantName, typeOfPlant, lightingNeeds, waterNeeds, fertilizerNeeds, notes } = req.body;
     const { id } = req.user;
     const plantEntry = {
+        owner_id: id,
         plantName,
         typeOfPlant,
         lightingNeeds,
         waterNeeds,
         fertilizerNeeds,
         notes,
-        owner_id: id
+        
     }
     try {
         const newPlant = await PlantModel.create(plantEntry);
@@ -58,7 +59,8 @@ router.get('/:plantName', async(req, res)=>{
 // Update plant by name (requires sign in) <UPDATE>
 router.put('/:plantName', validateSession, async(req, res)=>{
     try {
-        const { plantName } = req.params;
+        const { plantName, typeOfPlant, lightingNeeds, waterNeeds, fertilizerNeeds, notes } = req.body;
+        
 
         const updatedPlant = await PlantModel.update({
             plantName,
@@ -66,21 +68,21 @@ router.put('/:plantName', validateSession, async(req, res)=>{
             lightingNeeds,
             waterNeeds,
             fertilizerNeeds,
-            notes}, {where: {plantName: plantName}
+            notes}, {where: {plantName: req.params.plantName}
         });
         res.status(200).json({
             msg: 'plant updated!',
             updatedPlant
         });
     } catch (err) {
-        res.status(500).json({error: err})
+        res.status(500).json({msg: `Error: ${err}`})
     }
 });
 
 // Delete plant by name (requires sign in) <DELETE>
 router.delete('/:plantName', validateSession, async (req, res)=>{
     const { plantName } = req.params;
-    const { id } = req.user.id;
+    const { id } = req.user;
 
     try {
         const deletedPlant = await PlantModel.destroy({
@@ -102,3 +104,5 @@ router.delete('/:plantName', validateSession, async (req, res)=>{
         }
     }
 })
+
+module.exports = router;
