@@ -13,7 +13,7 @@ app.use('/plant', controllers.plantController);
 app.use('/garden', controllers.gardenController);
 
 dbConnection.authenticate()
-    .then(() => dbConnection.sync()) //inside dbconnection.sync({force: true}) to clear table [make sure you take it out before trying to use server]
+    .then(() => dbConnection.sync({})) //inside dbconnection.sync({force: true}) to clear table [make sure you take it out before trying to use server]
     .then (() =>{
         app.listen(process.env.PORT, () => {
             console.log(`server is listening on port ${process.env.PORT}`);
