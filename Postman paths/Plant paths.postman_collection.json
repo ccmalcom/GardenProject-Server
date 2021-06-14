@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "4029ef4c-b869-4f7f-8197-46c1907852ed",
+		"name": "Plant paths",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create new plant",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjIzNDQ1MDc2LCJleHAiOjE2MjM1MzE0NzZ9.7ec8y8dJ-FXIl5Wcts4UU2QGI7nAjycTD9I0xIy9cSY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n        \"plantName\": \"orange\",\r\n        \"typeOfPlant\": \"fruit\",\r\n        \"lightingNeeds\": \"moderate\",\r\n        \"waterNeeds\": \"once daily\",\r\n        \"fertilizerNeeds\": \"none\",\r\n        \"notes\": \"test\"\r\n        \r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3010/plant/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3010",
+					"path": [
+						"plant",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all plants",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIzNDQzMjQ0LCJleHAiOjE2MjM1Mjk2NDR9.oCLQXTb7QJoKOZ1lIs7z4AXuHxboLtL0g9Oe0QCdlz4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3010/plant/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3010",
+					"path": [
+						"plant",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get plant by name",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIzNDQzMjQ0LCJleHAiOjE2MjM1Mjk2NDR9.oCLQXTb7QJoKOZ1lIs7z4AXuHxboLtL0g9Oe0QCdlz4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3010/plant/orange",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3010",
+					"path": [
+						"plant",
+						"orange"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update plant (by name)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIzNDQzMjQ0LCJleHAiOjE2MjM1Mjk2NDR9.oCLQXTb7QJoKOZ1lIs7z4AXuHxboLtL0g9Oe0QCdlz4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"notes\" : \"boop\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3010/plant/orange",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3010",
+					"path": [
+						"plant",
+						"orange"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete plant by name",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIzNDQzMjQ0LCJleHAiOjE2MjM1Mjk2NDR9.oCLQXTb7QJoKOZ1lIs7z4AXuHxboLtL0g9Oe0QCdlz4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3010/plant/orange",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3010",
+					"path": [
+						"plant",
+						"orange"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
