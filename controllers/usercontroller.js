@@ -16,7 +16,7 @@ router.post('/register', async(req, res)=>{
             zipCode
         });
 
-        let token = jwt.sign({ id: User.id }, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24})
+        let token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 12})
 
         res.status(201).json({
             msg: 'User successfully registered!',
@@ -50,7 +50,7 @@ router.post('/login', async (req, res) =>{
         if(loginUser) {
             let passwordComparison = await bcrypt.compare(password, loginUser.password);
             if(passwordComparison){
-                let token = jwt.sign({ id: loginUser.id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24})
+                let token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 12})
                 res.status(200).json({
                     user: loginUser,
                     message: "User successfully logged in!",
